@@ -1,9 +1,10 @@
 import './App.css';
+import CountryApp from './containers/CountryApp/CountryApp';
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-
+    <div>
+      <CountryApp/>
     </div>
   );
 }
