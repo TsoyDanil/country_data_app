@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
 import CountriesList from "../../components/CountriesList/CountriesList";
+import Preloader from "../../components/UI/Preloader/Preloader";
 import './CountryApp.css'
 
 const CountryApp = () => {
+
+    const [isLoading, setIsLoading] = useState(false)
 
     const [countriesList, setCountriesList] = useState([])
 
@@ -10,7 +13,7 @@ const CountryApp = () => {
 
     const getCountryList = async () => {
         try{
-        //   setIsLoading(true)
+            setIsLoading(true)
             const copyArray = []
             const response = await fetch(url  + 'all')
             const result = await response.json()
@@ -23,7 +26,7 @@ const CountryApp = () => {
             console.log(e)
         }
         finally{
-        //   setIsLoading(false)
+            setIsLoading(false)
         }
     }
 
@@ -32,7 +35,10 @@ const CountryApp = () => {
     }, [])
 
     return (
-        <div>
+        <div>   
+
+            {isLoading && <Preloader/>}
+
             <CountriesList
                 countriesList = {countriesList}
             />
