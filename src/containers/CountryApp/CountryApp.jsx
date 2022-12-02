@@ -15,7 +15,6 @@ const CountryApp = () => {
 
     const changeCurrentCountry = (countryName) => {
         setCurrentCountry(countryName)
-        console.log(countryName)
     }
 
     const getCountryList = async () => {
@@ -43,8 +42,8 @@ const CountryApp = () => {
     }, [])
 
     useEffect(() => {
-        console.log(currentCountry)
-    }, [setCurrentCountry])
+        console.log(1)
+    }, [currentCountry])
 
     return (
         <div>   
