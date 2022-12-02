@@ -17,8 +17,8 @@ const CountryInfo = (props) => {
                     <p>Bordering with: </p>
                     <ul>
                         {   
-                            props.country.borders ? 
-                            props.country.borders.map((border, i) => {
+                            props.borders ? 
+                            props.borders.map((border, i) => {
                                 return <li key={i}>{border}</li>
                             })                       
                             :

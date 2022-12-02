@@ -6,13 +6,15 @@ import './CountryApp.css'
 
 const CountryApp = () => {
 
-    const [country, setCountry] = useState(null)
+    const [countryInfo, setCountryInfo] = useState(null)
 
     const [currentCountry, setCurrentCountry] = useState('')
 
     const [isLoading, setIsLoading] = useState(false)
 
     const [countriesList, setCountriesList] = useState([])
+
+    const [borders, setBorders] = useState([])
 
     const url = 'https://restcountries.com/v2/'
 
@@ -41,18 +43,30 @@ const CountryApp = () => {
     }
 
     const searchCountry = async (countryName) => {
-        try{
-            setIsLoading(true)
-            const response = await fetch( url + `/name/${countryName}`)
-            const result = await response.json()
-            setCountry(result[0])
-        }
-        catch (e){
-            console.log(e)
-        }
-        finally{
-            setIsLoading(false)
-        }
+            try{
+                setIsLoading(true)
+                const response = await fetch( url + `name/${countryName}`)
+                const result = await response.json()
+                if ('borders' in result[0]){
+                    const promiseBorderArray = result[0].borders.map(async (borderCode) => {
+                        const response = await fetch(`https://restcountries.com/v2/alpha/${borderCode}`)
+                        const result =  await response.json()
+                        const countryName = result.name
+                        return countryName
+                    })
+                    const bordersArray = await Promise.all(promiseBorderArray)
+                    setBorders(bordersArray)
+                } else{
+                    setBorders(null)
+                }
+                setCountryInfo(result[0])
+            }
+            catch (e){
+                console.log(e)
+            }
+            finally{
+                setIsLoading(false)
+            }
         }
 
     useEffect(() => {
@@ -74,7 +88,8 @@ const CountryApp = () => {
             />
 
             <CountryInfo
-                country = {country}
+                country = {countryInfo}
+                borders = {borders}
             />
 
         </div>
