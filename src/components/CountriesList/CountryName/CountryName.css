@@ -1,0 +1,17 @@
+.CountryName{
+    padding: 10px;
+    margin: 2px 5px;
+    font-family: 'Sono',sans-serif;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    background: #1E2761;
+    color: aqua;
+    font-weight: bold;
+    transition: 0.5s;
+    border: 2px solid black;
+}
+
+.CountryName:hover{
+    background-color: black;
+}

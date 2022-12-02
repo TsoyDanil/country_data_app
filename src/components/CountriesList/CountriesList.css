@@ -1,0 +1,13 @@
+.CountryList{
+    max-width: 300px;
+    height: 95vh;
+    width: 100%;
+    border: 2px solid black;
+    background: #2F3C7E;
+    margin: 10px;
+    padding: 3px;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    border-radius: 3px;
+}
