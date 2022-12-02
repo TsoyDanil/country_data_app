@@ -7,18 +7,18 @@ const CountryInfo = (props) => {
         
         <div className="CountryInfo">
             {
-                props.currentCountry ?
+                props.country ?
                 <div  className="CountryInfo__inner__container">
                     <div>
-                    <h1 className="CountryInfo__title">COUNTRY: {props.currentCountry.name}</h1>
-                    <p>Capital: {props.currentCountry.capital}</p>
-                    <p>Population: {props.currentCountry.population}</p>
-                    <p>Area:{props.currentCountry.area}</p>
+                    <h1 className="CountryInfo__title">COUNTRY: {props.country.name}</h1>
+                    <p>Capital: {props.country.capital}</p>
+                    <p>Population: {props.country.population}</p>
+                    <p>Area:{props.country.area}</p>
                     <p>Bordering with: </p>
                     <ul>
                         {   
-                            props.currentCountry.borders ? 
-                            props.currentCountry.borders.map((border, i) => {
+                            props.country.borders ? 
+                            props.country.borders.map((border, i) => {
                                 return <li key={i}>{border}</li>
                             })                       
                             :
@@ -27,7 +27,7 @@ const CountryInfo = (props) => {
                     </ul>
                     </div>
                     <div className="Image__frame">
-                        <img className="CountryInfo__image" src={props.currentCountry.flag} alt={props.currentCountry.name} />
+                        <img className="CountryInfo__image" src={props.country.flag} alt={props.country.name} />
                     </div>
                 </div>
                 :

@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from "react";
 import CountriesList from "../../components/CountriesList/CountriesList";
 import Preloader from "../../components/UI/Preloader/Preloader";
+import CountryInfo from "../../components/CountryInfo/CountryInfo";
 import './CountryApp.css'
 
 const CountryApp = () => {
+
+    const [country, setCountry] = useState(null)
 
     const [currentCountry, setCurrentCountry] = useState('')
 
@@ -37,16 +40,31 @@ const CountryApp = () => {
         }
     }
 
+    const searchCountry = async (countryName) => {
+        try{
+            setIsLoading(true)
+            const response = await fetch( url + `/name/${countryName}`)
+            const result = await response.json()
+            setCountry(result[0])
+        }
+        catch (e){
+            console.log(e)
+        }
+        finally{
+            setIsLoading(false)
+        }
+        }
+
     useEffect(() => {
         getCountryList()
     }, [])
 
     useEffect(() => {
-        console.log(1)
+        searchCountry(currentCountry)
     }, [currentCountry])
 
     return (
-        <div>   
+        <div className="CountryApp">   
 
             {isLoading && <Preloader/>}
 
@@ -54,6 +72,11 @@ const CountryApp = () => {
                 countriesList = {countriesList}
                 changeCurrentCountry = {changeCurrentCountry}
             />
+
+            <CountryInfo
+                country = {country}
+            />
+
         </div>
     )
 }
