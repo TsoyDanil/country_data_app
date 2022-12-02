@@ -10,7 +10,7 @@ const CountriesList = (props) => {
                     props.countriesList.map((country, i) => {
                         return <CountryName
                             key = {i}
-                            onClick = {() => {props.searchCountry(country)}}
+                            onClick = {() => {props.changeCurrentCountry(country)}}
                         >{country}</CountryName>
                     })
                     :

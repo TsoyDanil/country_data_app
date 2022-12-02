@@ -5,25 +5,33 @@ import './CountryApp.css'
 
 const CountryApp = () => {
 
+    const [currentCountry, setCurrentCountry] = useState('')
+
     const [isLoading, setIsLoading] = useState(false)
 
     const [countriesList, setCountriesList] = useState([])
 
     const url = 'https://restcountries.com/v2/'
 
+    const changeCurrentCountry = (countryName) => {
+        setCurrentCountry(countryName)
+        console.log(countryName)
+    }
+
     const getCountryList = async () => {
         try{
             setIsLoading(true)
-            const copyArray = []
             const response = await fetch(url  + 'all')
             const result = await response.json()
-            result.forEach(country => {
-            copyArray.push(country.name)
-        })
-            setCountriesList(copyArray)
+            const namesArray = result.map(country => {
+                return country.name
+            })
+
+            setCountriesList(namesArray)
+
         }
-        catch (e){
-            console.log(e)
+        catch (error){
+            console.log(error)
         }
         finally{
             setIsLoading(false)
@@ -34,6 +42,10 @@ const CountryApp = () => {
         getCountryList()
     }, [])
 
+    useEffect(() => {
+        console.log(currentCountry)
+    }, [setCurrentCountry])
+
     return (
         <div>   
 
@@ -41,6 +53,7 @@ const CountryApp = () => {
 
             <CountriesList
                 countriesList = {countriesList}
+                changeCurrentCountry = {changeCurrentCountry}
             />
         </div>
     )
