@@ -10,16 +10,16 @@ const CountryInfo = (props) => {
                 props.country ?
                 <div  className="CountryInfo__inner__container">
                     <div>
-                    <h1 className="CountryInfo__title">COUNTRY: {props.country.name}</h1>
-                    <p>Capital: {props.country.capital}</p>
-                    <p>Population: {props.country.population}</p>
-                    <p>Area:{props.country.area}</p>
-                    <p>Bordering with: </p>
+                    <h1 className="CountryInfo__title CountryInfo__text">COUNTRY: {props.country.name}</h1>
+                    <p className="CountryInfo__text">Capital: {props.country.capital}</p>
+                    <p className="CountryInfo__text">Population: {props.country.population}</p>
+                    <p className="CountryInfo__text">Area:{props.country.area}</p>
+                    <p className="CountryInfo__text">Bordering with: </p>
                     <ul>
                         {   
                             props.borders ? 
                             props.borders.map((border, i) => {
-                                return <li key={i}>{border}</li>
+                                return <li key={i} className="CountryInfo__text">{border}</li>
                             })                       
                             :
                             <li>NO BORDERS</li>

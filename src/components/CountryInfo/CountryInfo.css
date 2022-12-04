@@ -29,8 +29,12 @@
     border-radius: 5px;
 }
 
-.CountryInfo__inner__container:hover{
-    background-color: black;
+.CountryInfo__text{
+    transition: 0.2s;
+}
+
+.CountryInfo__text:hover{
+    color: black;
 }
 
 .CountryInfo__image{
