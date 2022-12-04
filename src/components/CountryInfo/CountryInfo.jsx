@@ -33,6 +33,7 @@ const CountryInfo = (props) => {
                 :
                 <div className="CountryInfo__empty__text__border">
                     <h1 className="CountryInfo__empty__text">NO COUNTRY</h1>
+                    <p>ADD SOME COUNTRY TO SEE INFO</p>
                 </div>
             }
         </div>
